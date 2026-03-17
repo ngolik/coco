@@ -48,7 +48,7 @@ final class WeatherService {
 
         do {
             let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            // Backend returns camelCase JSON; no key decoding strategy needed
             return try decoder.decode(WeatherResponse.self, from: data)
         } catch {
             throw WeatherServiceError.decodingError(error)
