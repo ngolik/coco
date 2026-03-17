@@ -1,0 +1,122 @@
+openapi: "3.0.3"
+info:
+  title: Weather App API
+  version: "1.0.0"
+  description: |
+    Weather API backed by wttr.in. Returns current weather conditions
+    for a given city without requiring an API key.
+
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+
+paths:
+  /api/weather:
+    get:
+      summary: Get current weather for a city
+      operationId: getWeather
+      parameters:
+        - name: city
+          in: query
+          required: true
+          description: Name of the city to retrieve weather for
+          schema:
+            type: string
+            example: London
+      responses:
+        "200":
+          description: Current weather data for the requested city
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WeatherResponse"
+              example:
+                temperature: 15
+                feels_like: 13
+                humidity: 72
+                wind_speed: 20
+                condition: "Partly cloudy"
+                icon_code: "116"
+                city_name: "London"
+        "400":
+          description: Bad request — missing or invalid query parameter
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                error: "Query parameter 'city' is required"
+                code: 400
+        "404":
+          description: City not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                error: "City 'Xyzabc' not found"
+                code: 404
+        "502":
+          description: Upstream weather provider error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                error: "Failed to fetch data from upstream weather provider"
+                code: 502
+
+components:
+  schemas:
+    WeatherResponse:
+      type: object
+      required:
+        - temperature
+        - feels_like
+        - humidity
+        - wind_speed
+        - condition
+        - icon_code
+        - city_name
+      properties:
+        temperature:
+          type: number
+          description: Current temperature in Celsius
+          example: 15
+        feels_like:
+          type: number
+          description: Feels-like temperature in Celsius
+          example: 13
+        humidity:
+          type: integer
+          description: Relative humidity in percent
+          example: 72
+        wind_speed:
+          type: number
+          description: Wind speed in km/h
+          example: 20
+        condition:
+          type: string
+          description: Human-readable weather condition description
+          example: "Partly cloudy"
+        icon_code:
+          type: string
+          description: wttr.in weather code used to select a weather icon
+          example: "116"
+        city_name:
+          type: string
+          description: Resolved city name as returned by the data source
+          example: "London"
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - code
+      properties:
+        error:
+          type: string
+          description: Human-readable error message
+        code:
+          type: integer
+          description: HTTP status code
