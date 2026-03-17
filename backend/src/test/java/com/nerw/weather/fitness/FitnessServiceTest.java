@@ -1,5 +1,6 @@
 package com.nerw.weather.fitness;
 
+import com.nerw.weather.exception.ExerciseNotFoundException;
 import com.nerw.weather.exception.InvalidRequestException;
 import com.nerw.weather.model.ExercisesResponse;
 import com.nerw.weather.model.ProgressResponse;
@@ -138,6 +139,17 @@ class FitnessServiceTest {
         assertThatThrownBy(() -> service.logWorkout(request))
                 .isInstanceOf(InvalidRequestException.class)
                 .hasMessageContaining("sets");
+    }
+
+    @Test
+    void logWorkout_throwsOnUnknownExerciseId() {
+        WorkoutRequest request = new WorkoutRequest(
+                "usr-42", "2026-03-17", 55,
+                List.of(new WorkoutSet("ex-999", 8, 100.0, 1)), null);
+
+        assertThatThrownBy(() -> service.logWorkout(request))
+                .isInstanceOf(ExerciseNotFoundException.class)
+                .hasMessageContaining("ex-999");
     }
 
     @Test

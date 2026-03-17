@@ -1,5 +1,6 @@
 package com.nerw.weather.service;
 
+import com.nerw.weather.exception.ExerciseNotFoundException;
 import com.nerw.weather.exception.InvalidRequestException;
 import com.nerw.weather.model.Exercise;
 import com.nerw.weather.model.ExercisesResponse;
@@ -19,7 +20,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 @Service
@@ -105,6 +105,7 @@ public class FitnessService {
             throw new InvalidRequestException("'from' must not be after 'to'");
         }
 
+        // TODO: enforce caller identity — any userId can currently be queried by any caller
         List<StoredWorkout> filtered;
         synchronized (workouts) {
             filtered = workouts.stream()
@@ -197,6 +198,9 @@ public class FitnessService {
         for (WorkoutSet set : request.sets()) {
             if (set.exerciseId() == null || set.exerciseId().isBlank()) {
                 throw new InvalidRequestException("Each set must have an exerciseId");
+            }
+            if (!exercises.containsKey(set.exerciseId())) {
+                throw new ExerciseNotFoundException(set.exerciseId());
             }
             if (set.reps() <= 0) {
                 throw new InvalidRequestException("reps must be positive");

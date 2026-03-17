@@ -63,7 +63,7 @@ List available exercises, optionally filtered by muscle group or equipment.
 
 | Code | Condition                        | Body                                       |
 |------|----------------------------------|--------------------------------------------|
-| 400  | Unrecognised filter value        | `{"error": "Unknown muscleGroup: xyz", "code": 400}` |
+| 400  | Unrecognised filter value        | `{"error": "Unknown muscleGroup: xyz"}` |
 
 ---
 
@@ -108,7 +108,7 @@ Log a completed workout session containing one or more exercise sets.
 | sets[].reps            | integer | yes      | Repetitions performed in this set            |
 | sets[].weightKg        | number  | no       | Load used in kilograms (omit for bodyweight) |
 | sets[].setNumber       | integer | yes      | Set order within this exercise               |
-| notes                  | string  | no       | Free-text session notes                      |
+| notes                  | string  | no       | Free-text session notes (write-only; not included in response) |
 
 **Response 201**
 
@@ -130,9 +130,9 @@ Log a completed workout session containing one or more exercise sets.
 
 | Code | Condition                                | Body                                              |
 |------|------------------------------------------|---------------------------------------------------|
-| 400  | Missing required field                   | `{"error": "Field 'userId' is required", "code": 400}` |
-| 400  | Invalid date format                      | `{"error": "Invalid date format, expected YYYY-MM-DD", "code": 400}` |
-| 404  | exerciseId not found in catalogue        | `{"error": "Exercise 'ex-999' not found", "code": 404}` |
+| 400  | Missing required field                   | `{"error": "Field 'userId' is required"}` |
+| 400  | Invalid date format                      | `{"error": "Invalid date format, expected YYYY-MM-DD"}` |
+| 404  | exerciseId not found in catalogue        | `{"error": "Exercise 'ex-999' not found"}` |
 
 ---
 
@@ -204,9 +204,8 @@ Retrieve aggregated progress metrics for a user over a date range.
 
 | Code | Condition                          | Body                                               |
 |------|------------------------------------|----------------------------------------------------|
-| 400  | Missing required query parameter   | `{"error": "Query parameter 'userId' is required", "code": 400}` |
-| 400  | `from` is after `to`               | `{"error": "Parameter 'from' must not be after 'to'", "code": 400}` |
-| 404  | userId not found                   | `{"error": "User 'usr-99' not found", "code": 404}` |
+| 400  | Missing required query parameter   | `{"error": "Query parameter 'userId' is required"}` |
+| 400  | `from` is after `to`               | `{"error": "Parameter 'from' must not be after 'to'"}` |
 
 ---
 
@@ -216,8 +215,7 @@ All error responses follow the existing project convention:
 
 ```json
 {
-  "error": "Human-readable message",
-  "code": 400
+  "error": "Human-readable message"
 }
 ```
 
