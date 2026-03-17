@@ -165,11 +165,17 @@ public class FitnessService {
             exerciseProgress.add(new ProgressResponse.ExerciseProgress(exId, exName, first, last, delta));
         }
 
+        int totalWorkouts = exerciseId == null
+                ? filtered.size()
+                : (int) filtered.stream()
+                        .filter(w -> w.sets().stream().anyMatch(s -> exerciseId.equals(s.exerciseId())))
+                        .count();
+
         return new ProgressResponse(
                 userId,
                 from,
                 to,
-                filtered.size(),
+                totalWorkouts,
                 totalVolume,
                 exerciseProgress
         );

@@ -4,5 +4,5 @@ public record WorkoutSet(
         String exerciseId,
         int reps,
         double weightKg,
-        int setNumber
+        int setNumber  // preserved for future set-ordering logic
 ) {}

@@ -190,6 +190,25 @@ class FitnessServiceTest {
     }
 
     @Test
+    void getProgress_totalWorkouts_filteredByExerciseId() {
+        // Session 1: contains ex-001 only
+        service.logWorkout(new WorkoutRequest("usr-1", "2026-03-01", 45,
+                List.of(new WorkoutSet("ex-001", 8, 95.0, 1)), null));
+        // Session 2: contains ex-001 and ex-002
+        service.logWorkout(new WorkoutRequest("usr-1", "2026-03-10", 50,
+                List.of(new WorkoutSet("ex-001", 8, 100.0, 1),
+                        new WorkoutSet("ex-002", 10, 80.0, 1)), null));
+        // Session 3: contains ex-002 only
+        service.logWorkout(new WorkoutRequest("usr-1", "2026-03-17", 40,
+                List.of(new WorkoutSet("ex-002", 10, 85.0, 1)), null));
+
+        ProgressResponse progress = service.getProgress("usr-1", "2026-03-01", "2026-03-31", "ex-001");
+
+        // Only sessions 1 and 2 contain ex-001
+        assertThat(progress.totalWorkouts()).isEqualTo(2);
+    }
+
+    @Test
     void getProgress_filtersOtherUsers() {
         service.logWorkout(new WorkoutRequest("usr-A", "2026-03-10", 30,
                 List.of(new WorkoutSet("ex-002", 10, 80.0, 1)), null));
