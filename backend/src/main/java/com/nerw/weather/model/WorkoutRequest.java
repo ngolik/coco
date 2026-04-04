@@ -3,10 +3,10 @@ package com.nerw.weather.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public record WorkoutRequest(
-        String exerciseName,
+        @JsonProperty("exercise_name") String exerciseName,
         @JsonProperty("one_rm_kg") double oneRepMax,
-        double targetIntensityPct,
+        @JsonProperty("target_intensity_pct") double targetIntensityPct,
         @JsonProperty("num_sets") int sets,
-        int repsPerSet,
-        ExerciseType exerciseType
+        @JsonProperty("reps_per_set") int repsPerSet,
+        @JsonProperty("exercise_type") ExerciseType exerciseType
 ) {}
