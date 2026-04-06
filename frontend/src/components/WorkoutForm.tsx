@@ -1,5 +1,5 @@
 import { useState, FormEvent } from 'react'
-import type { WorkoutPlanRequest, ExerciseType } from '../types'
+import type { WorkoutPlanRequest } from '../types'
 import styles from './WorkoutForm.module.css'
 
 interface WorkoutFormProps {
@@ -8,47 +8,33 @@ interface WorkoutFormProps {
 }
 
 interface FormErrors {
-  exercise_name?: string
-  one_rm_kg?: string
-  target_intensity_pct?: string
-  num_sets?: string
-  reps_per_set?: string
+  bench_press_1rm?: string
+  squat_1rm?: string
+  deadlift_1rm?: string
 }
 
 export function WorkoutForm({ onSubmit, loading }: WorkoutFormProps) {
-  const [exerciseName, setExerciseName] = useState('')
-  const [oneRm, setOneRm] = useState('')
-  const [intensity, setIntensity] = useState('')
-  const [sets, setSets] = useState('')
-  const [reps, setReps] = useState('')
-  const [exerciseType, setExerciseType] = useState<ExerciseType>('multi-joint')
+  const [benchPress, setBenchPress] = useState('')
+  const [squat, setSquat] = useState('')
+  const [deadlift, setDeadlift] = useState('')
   const [errors, setErrors] = useState<FormErrors>({})
 
   function validate(): boolean {
     const next: FormErrors = {}
 
-    if (!exerciseName.trim()) {
-      next.exercise_name = 'Exercise name is required'
+    const benchNum = Number(benchPress)
+    if (!benchPress || isNaN(benchNum) || benchNum < 1) {
+      next.bench_press_1rm = 'Bench press 1RM must be at least 1 kg'
     }
 
-    const oneRmNum = Number(oneRm)
-    if (!oneRm || isNaN(oneRmNum) || oneRmNum < 1) {
-      next.one_rm_kg = '1RM must be at least 1 kg'
+    const squatNum = Number(squat)
+    if (!squat || isNaN(squatNum) || squatNum < 1) {
+      next.squat_1rm = 'Squat 1RM must be at least 1 kg'
     }
 
-    const intensityNum = Number(intensity)
-    if (!intensity || isNaN(intensityNum) || intensityNum < 30 || intensityNum > 100) {
-      next.target_intensity_pct = 'Intensity must be between 30 and 100'
-    }
-
-    const setsNum = Number(sets)
-    if (!sets || isNaN(setsNum) || setsNum < 3 || setsNum > 5) {
-      next.num_sets = 'Number of sets must be between 3 and 5'
-    }
-
-    const repsNum = Number(reps)
-    if (!reps || isNaN(repsNum) || repsNum < 1) {
-      next.reps_per_set = 'Reps per set is required (min 1)'
+    const deadliftNum = Number(deadlift)
+    if (!deadlift || isNaN(deadliftNum) || deadliftNum < 1) {
+      next.deadlift_1rm = 'Deadlift 1RM must be at least 1 kg'
     }
 
     setErrors(next)
@@ -60,123 +46,69 @@ export function WorkoutForm({ onSubmit, loading }: WorkoutFormProps) {
     if (!validate()) return
 
     onSubmit({
-      exercise_name: exerciseName.trim(),
-      one_rm_kg: Number(oneRm),
-      target_intensity_pct: Number(intensity),
-      num_sets: Number(sets),
-      reps_per_set: Number(reps),
-      exercise_type: exerciseType,
+      bench_press_1rm: Number(benchPress),
+      squat_1rm: Number(squat),
+      deadlift_1rm: Number(deadlift),
     })
   }
 
   return (
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
       <div className={styles.field}>
-        <label htmlFor="exercise-name">Exercise name</label>
+        <label htmlFor="bench-press">Bench Press 1RM (kg)</label>
         <input
-          id="exercise-name"
-          type="text"
-          value={exerciseName}
-          onChange={(e) => setExerciseName(e.target.value)}
-          placeholder="e.g. Back Squat"
-          aria-describedby={errors.exercise_name ? 'exercise-name-error' : undefined}
-          aria-invalid={!!errors.exercise_name}
-        />
-        {errors.exercise_name && (
-          <span id="exercise-name-error" className={styles.error} role="alert">
-            {errors.exercise_name}
-          </span>
-        )}
-      </div>
-
-      <div className={styles.field}>
-        <label htmlFor="one-rm">1RM (kg)</label>
-        <input
-          id="one-rm"
+          id="bench-press"
           type="number"
           min={1}
-          value={oneRm}
-          onChange={(e) => setOneRm(e.target.value)}
-          placeholder="e.g. 100"
-          aria-describedby={errors.one_rm_kg ? 'one-rm-error' : undefined}
-          aria-invalid={!!errors.one_rm_kg}
+          value={benchPress}
+          onChange={(e) => setBenchPress(e.target.value)}
+          placeholder="e.g. 115"
+          aria-describedby={errors.bench_press_1rm ? 'bench-press-error' : undefined}
+          aria-invalid={!!errors.bench_press_1rm}
         />
-        {errors.one_rm_kg && (
-          <span id="one-rm-error" className={styles.error} role="alert">
-            {errors.one_rm_kg}
+        {errors.bench_press_1rm && (
+          <span id="bench-press-error" className={styles.error} role="alert">
+            {errors.bench_press_1rm}
           </span>
         )}
       </div>
 
       <div className={styles.field}>
-        <label htmlFor="intensity">Target intensity (%)</label>
+        <label htmlFor="squat">Squat 1RM (kg)</label>
         <input
-          id="intensity"
-          type="number"
-          min={30}
-          max={100}
-          value={intensity}
-          onChange={(e) => setIntensity(e.target.value)}
-          placeholder="30–100"
-          aria-describedby={errors.target_intensity_pct ? 'intensity-error' : undefined}
-          aria-invalid={!!errors.target_intensity_pct}
-        />
-        {errors.target_intensity_pct && (
-          <span id="intensity-error" className={styles.error} role="alert">
-            {errors.target_intensity_pct}
-          </span>
-        )}
-      </div>
-
-      <div className={styles.field}>
-        <label htmlFor="sets">Number of sets</label>
-        <input
-          id="sets"
-          type="number"
-          min={3}
-          max={5}
-          value={sets}
-          onChange={(e) => setSets(e.target.value)}
-          placeholder="3–5"
-          aria-describedby={errors.num_sets ? 'sets-error' : undefined}
-          aria-invalid={!!errors.num_sets}
-        />
-        {errors.num_sets && (
-          <span id="sets-error" className={styles.error} role="alert">
-            {errors.num_sets}
-          </span>
-        )}
-      </div>
-
-      <div className={styles.field}>
-        <label htmlFor="reps">Reps per set</label>
-        <input
-          id="reps"
+          id="squat"
           type="number"
           min={1}
-          value={reps}
-          onChange={(e) => setReps(e.target.value)}
-          placeholder="e.g. 5"
-          aria-describedby={errors.reps_per_set ? 'reps-error' : undefined}
-          aria-invalid={!!errors.reps_per_set}
+          value={squat}
+          onChange={(e) => setSquat(e.target.value)}
+          placeholder="e.g. 80"
+          aria-describedby={errors.squat_1rm ? 'squat-error' : undefined}
+          aria-invalid={!!errors.squat_1rm}
         />
-        {errors.reps_per_set && (
-          <span id="reps-error" className={styles.error} role="alert">
-            {errors.reps_per_set}
+        {errors.squat_1rm && (
+          <span id="squat-error" className={styles.error} role="alert">
+            {errors.squat_1rm}
           </span>
         )}
       </div>
 
       <div className={styles.field}>
-        <label htmlFor="exercise-type">Exercise type</label>
-        <select
-          id="exercise-type"
-          value={exerciseType}
-          onChange={(e) => setExerciseType(e.target.value as ExerciseType)}
-        >
-          <option value="multi-joint">Multi-joint</option>
-          <option value="single-joint">Single-joint</option>
-        </select>
+        <label htmlFor="deadlift">Deadlift 1RM (kg)</label>
+        <input
+          id="deadlift"
+          type="number"
+          min={1}
+          value={deadlift}
+          onChange={(e) => setDeadlift(e.target.value)}
+          placeholder="e.g. 140"
+          aria-describedby={errors.deadlift_1rm ? 'deadlift-error' : undefined}
+          aria-invalid={!!errors.deadlift_1rm}
+        />
+        {errors.deadlift_1rm && (
+          <span id="deadlift-error" className={styles.error} role="alert">
+            {errors.deadlift_1rm}
+          </span>
+        )}
       </div>
 
       <button type="submit" className={styles.submit} disabled={loading}>
