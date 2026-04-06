@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CW000001 /* CocoWorkoutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CW100001 /* CocoWorkoutApp.swift */; };
+		CW000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CW100002 /* ContentView.swift */; };
+		CW000003 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CW100003 /* UserProfile.swift */; };
+		CW000004 /* CachedPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = CW100004 /* CachedPlan.swift */; };
+		CW000005 /* CompletedWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CW100005 /* CompletedWorkout.swift */; };
+		CW000006 /* WorkoutAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CW100006 /* WorkoutAPIClient.swift */; };
+		CW000007 /* WorkoutModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CW100007 /* WorkoutModels.swift */; };
+		CW000008 /* WorkoutScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CW100008 /* WorkoutScheduler.swift */; };
+		CW000009 /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CW100009 /* PlanView.swift */; };
+		CW000010 /* MicrocycleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CW100010 /* MicrocycleDetailView.swift */; };
+		CW000011 /* NextWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CW100011 /* NextWorkoutView.swift */; };
+		CW000012 /* ActiveWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CW100012 /* ActiveWorkoutView.swift */; };
+		CW000013 /* HistoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CW100013 /* HistoryListView.swift */; };
+		CW000014 /* WorkoutDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CW100014 /* WorkoutDetailView.swift */; };
+		CW000015 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CW100015 /* Assets.xcassets */; };
+		CW000016 /* WorkoutSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CW100016 /* WorkoutSchedulerTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CW800001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CW400000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CW300000;
+			remoteInfo = CocoWorkout;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CW100000 /* CocoWorkout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CocoWorkout.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CW100001 /* CocoWorkoutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocoWorkoutApp.swift; sourceTree = "<group>"; };
+		CW100002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CW100003 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserProfile.swift; path = Models/UserProfile.swift; sourceTree = "<group>"; };
+		CW100004 /* CachedPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CachedPlan.swift; path = Models/CachedPlan.swift; sourceTree = "<group>"; };
+		CW100005 /* CompletedWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CompletedWorkout.swift; path = Models/CompletedWorkout.swift; sourceTree = "<group>"; };
+		CW100006 /* WorkoutAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WorkoutAPIClient.swift; path = Networking/WorkoutAPIClient.swift; sourceTree = "<group>"; };
+		CW100007 /* WorkoutModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WorkoutModels.swift; path = Networking/WorkoutModels.swift; sourceTree = "<group>"; };
+		CW100008 /* WorkoutScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WorkoutScheduler.swift; path = Logic/WorkoutScheduler.swift; sourceTree = "<group>"; };
+		CW100009 /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlanView.swift; path = Views/Plan/PlanView.swift; sourceTree = "<group>"; };
+		CW100010 /* MicrocycleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MicrocycleDetailView.swift; path = Views/Plan/MicrocycleDetailView.swift; sourceTree = "<group>"; };
+		CW100011 /* NextWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NextWorkoutView.swift; path = Views/Workout/NextWorkoutView.swift; sourceTree = "<group>"; };
+		CW100012 /* ActiveWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActiveWorkoutView.swift; path = Views/Workout/ActiveWorkoutView.swift; sourceTree = "<group>"; };
+		CW100013 /* HistoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoryListView.swift; path = Views/History/HistoryListView.swift; sourceTree = "<group>"; };
+		CW100014 /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WorkoutDetailView.swift; path = Views/History/WorkoutDetailView.swift; sourceTree = "<group>"; };
+		CW100015 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CW100016 /* WorkoutSchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSchedulerTests.swift; sourceTree = "<group>"; };
+		CW100017 /* CocoWorkoutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CocoWorkoutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CW520000 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CW520001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CW200010 /* root */ = {
+			isa = PBXGroup;
+			children = (
+				CW200001 /* CocoWorkout */,
+				CW200011 /* CocoWorkoutTests */,
+				CW200000 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CW200000 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CW100000 /* CocoWorkout.app */,
+				CW100017 /* CocoWorkoutTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CW200001 /* CocoWorkout */ = {
+			isa = PBXGroup;
+			children = (
+				CW100001 /* CocoWorkoutApp.swift */,
+				CW100002 /* ContentView.swift */,
+				CW200002 /* Models */,
+				CW200003 /* Networking */,
+				CW200004 /* Logic */,
+				CW200005 /* Views */,
+				CW200009 /* Resources */,
+			);
+			path = CocoWorkout;
+			sourceTree = "<group>";
+		};
+		CW200002 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CW100003 /* UserProfile.swift */,
+				CW100004 /* CachedPlan.swift */,
+				CW100005 /* CompletedWorkout.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		CW200003 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				CW100006 /* WorkoutAPIClient.swift */,
+				CW100007 /* WorkoutModels.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		CW200004 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				CW100008 /* WorkoutScheduler.swift */,
+			);
+			name = Logic;
+			sourceTree = "<group>";
+		};
+		CW200005 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CW200006 /* Plan */,
+				CW200007 /* Workout */,
+				CW200008 /* History */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		CW200006 /* Plan */ = {
+			isa = PBXGroup;
+			children = (
+				CW100009 /* PlanView.swift */,
+				CW100010 /* MicrocycleDetailView.swift */,
+			);
+			name = Plan;
+			sourceTree = "<group>";
+		};
+		CW200007 /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				CW100011 /* NextWorkoutView.swift */,
+				CW100012 /* ActiveWorkoutView.swift */,
+			);
+			name = Workout;
+			sourceTree = "<group>";
+		};
+		CW200008 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				CW100013 /* HistoryListView.swift */,
+				CW100014 /* WorkoutDetailView.swift */,
+			);
+			name = History;
+			sourceTree = "<group>";
+		};
+		CW200009 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CW100015 /* Assets.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		CW200011 /* CocoWorkoutTests */ = {
+			isa = PBXGroup;
+			children = (
+				CW100016 /* WorkoutSchedulerTests.swift */,
+			);
+			path = CocoWorkoutTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CW300000 /* CocoWorkout */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CWCL0002 /* Build configuration list for PBXNativeTarget "CocoWorkout" */;
+			buildPhases = (
+				CW520000 /* Frameworks */,
+				CW500000 /* Sources */,
+				CW510000 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CocoWorkout;
+			productName = CocoWorkout;
+			productReference = CW100000 /* CocoWorkout.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CW300001 /* CocoWorkoutTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CWCL0003 /* Build configuration list for PBXNativeTarget "CocoWorkoutTests" */;
+			buildPhases = (
+				CW520001 /* Frameworks */,
+				CW500001 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CWTD0001 /* PBXTargetDependency */,
+			);
+			name = CocoWorkoutTests;
+			productName = CocoWorkoutTests;
+			productReference = CW100017 /* CocoWorkoutTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CW400000 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					CW300000 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					CW300001 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = CW300000;
+					};
+				};
+			};
+			buildConfigurationList = CWCL0001 /* Build configuration list for PBXProject "CocoWorkout" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CW200010;
+			productRefGroup = CW200000 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CW300000 /* CocoWorkout */,
+				CW300001 /* CocoWorkoutTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CW510000 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CW000015 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CW500000 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CW000001 /* CocoWorkoutApp.swift in Sources */,
+				CW000002 /* ContentView.swift in Sources */,
+				CW000003 /* UserProfile.swift in Sources */,
+				CW000004 /* CachedPlan.swift in Sources */,
+				CW000005 /* CompletedWorkout.swift in Sources */,
+				CW000006 /* WorkoutAPIClient.swift in Sources */,
+				CW000007 /* WorkoutModels.swift in Sources */,
+				CW000008 /* WorkoutScheduler.swift in Sources */,
+				CW000009 /* PlanView.swift in Sources */,
+				CW000010 /* MicrocycleDetailView.swift in Sources */,
+				CW000011 /* NextWorkoutView.swift in Sources */,
+				CW000012 /* ActiveWorkoutView.swift in Sources */,
+				CW000013 /* HistoryListView.swift in Sources */,
+				CW000014 /* WorkoutDetailView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CW500001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CW000016 /* WorkoutSchedulerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CWTD0001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CW300000 /* CocoWorkout */;
+			targetProxy = CW800001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		CWBC0001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSET_CATALOG_COMPILER_OPTIMIZATION = space;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_ASSIGN = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CWBC0002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSET_CATALOG_COMPILER_OPTIMIZATION = space;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_ASSIGN = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CWBC0003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSTCAT_COMPILER_OPTIMIZATION = space;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CocoWorkout/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nerw.CocoWorkout";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CWBC0004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSTCAT_COMPILER_OPTIMIZATION = space;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CocoWorkout/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nerw.CocoWorkout";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CWBC0005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nerw.CocoWorkoutTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CocoWorkout.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CocoWorkout";
+			};
+			name = Debug;
+		};
+		CWBC0006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nerw.CocoWorkoutTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CocoWorkout.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CocoWorkout";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CWCL0001 /* Build configuration list for PBXProject "CocoWorkout" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CWBC0001 /* Debug */,
+				CWBC0002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CWCL0002 /* Build configuration list for PBXNativeTarget "CocoWorkout" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CWBC0003 /* Debug */,
+				CWBC0004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CWCL0003 /* Build configuration list for PBXNativeTarget "CocoWorkoutTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CWBC0005 /* Debug */,
+				CWBC0006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CW400000 /* Project object */;
+}
