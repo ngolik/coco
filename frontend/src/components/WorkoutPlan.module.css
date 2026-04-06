@@ -1,47 +1,34 @@
 .section {
   margin-top: 2rem;
-  width: 100%;
-  max-width: 720px;
-}
-
-.title {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: #111827;
-  margin-bottom: 1rem;
 }
 
 .tabs {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.25rem;
+  border-bottom: 1px solid #e5e7eb;
   margin-bottom: 1.5rem;
-  flex-wrap: wrap;
 }
 
 .tab {
   padding: 0.5rem 1rem;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  background: #fff;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #374151;
+  color: #6b7280;
   cursor: pointer;
-  transition: background-color 0.15s, border-color 0.15s;
+  margin-bottom: -1px;
+  transition: color 0.15s, border-color 0.15s;
 }
 
 .tab:hover {
-  background-color: #f3f4f6;
+  color: #111827;
 }
 
 .tabActive {
-  background-color: #3b82f6;
-  border-color: #3b82f6;
-  color: #fff;
-}
-
-.tabActive:hover {
-  background-color: #2563eb;
+  color: #1d4ed8;
+  border-bottom-color: #1d4ed8;
 }
 
 .panel {
@@ -50,20 +37,13 @@
   gap: 1.5rem;
 }
 
-.day {
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  overflow: hidden;
-}
+.day {}
 
 .dayTitle {
-  font-size: 1rem;
+  font-size: 0.9375rem;
   font-weight: 600;
-  color: #111827;
-  margin: 0;
-  padding: 0.75rem 1rem;
-  background-color: #f9fafb;
-  border-bottom: 1px solid #e5e7eb;
+  margin: 0 0 0.75rem;
+  color: #374151;
 }
 
 .tableWrapper {
@@ -73,33 +53,25 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9375rem;
-}
-
-.table th,
-.table td {
-  padding: 0.625rem 0.875rem;
-  text-align: left;
-  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.875rem;
 }
 
 .table th {
-  background-color: #f9fafb;
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
   font-weight: 600;
   color: #374151;
-  white-space: nowrap;
 }
 
-.table tbody tr:hover {
-  background-color: #f0f9ff;
-}
-
-.lastRow td {
-  border-bottom: none;
+.table td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #e5e7eb;
+  color: #111827;
 }
 
 .exerciseName {
   font-weight: 500;
-  color: #111827;
   vertical-align: top;
 }

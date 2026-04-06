@@ -38,7 +38,7 @@ export function App() {
       const result = (await response.json()) as WorkoutPlanResponse
       setPlan(result)
     } catch {
-      setError('Network error — make sure the backend is running at localhost:8080')
+      setError('Network error — make sure the backend is running')
     } finally {
       setLoading(false)
     }
@@ -48,14 +48,13 @@ export function App() {
     <main className={styles.main}>
       <header className={styles.header}>
         <h1>Workout Plan Generator</h1>
-        <p>Enter your one-rep max for the three main lifts to generate a 4-week training plan.</p>
       </header>
 
       <WorkoutForm onSubmit={handleSubmit} loading={loading} />
 
       {loading && (
         <p className={styles.loading} role="status" aria-live="polite">
-          Generating your workout plan…
+          Calculating your workout plan…
         </p>
       )}
 

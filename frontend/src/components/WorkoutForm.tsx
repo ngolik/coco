@@ -24,17 +24,17 @@ export function WorkoutForm({ onSubmit, loading }: WorkoutFormProps) {
 
     const benchNum = Number(benchPress)
     if (!benchPress || isNaN(benchNum) || benchNum < 1) {
-      next.bench_press_1rm = 'Bench press 1RM must be at least 1 kg'
+      next.bench_press_1rm = 'Must be at least 1 kg'
     }
 
     const squatNum = Number(squat)
     if (!squat || isNaN(squatNum) || squatNum < 1) {
-      next.squat_1rm = 'Squat 1RM must be at least 1 kg'
+      next.squat_1rm = 'Must be at least 1 kg'
     }
 
     const deadliftNum = Number(deadlift)
     if (!deadlift || isNaN(deadliftNum) || deadliftNum < 1) {
-      next.deadlift_1rm = 'Deadlift 1RM must be at least 1 kg'
+      next.deadlift_1rm = 'Must be at least 1 kg'
     }
 
     setErrors(next)
@@ -55,7 +55,7 @@ export function WorkoutForm({ onSubmit, loading }: WorkoutFormProps) {
   return (
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
       <div className={styles.field}>
-        <label htmlFor="bench-press">Bench Press 1RM (kg)</label>
+        <label htmlFor="bench-press">Жим лежа / Bench Press 1RM (kg)</label>
         <input
           id="bench-press"
           type="number"
@@ -74,7 +74,7 @@ export function WorkoutForm({ onSubmit, loading }: WorkoutFormProps) {
       </div>
 
       <div className={styles.field}>
-        <label htmlFor="squat">Squat 1RM (kg)</label>
+        <label htmlFor="squat">Присед / Squat 1RM (kg)</label>
         <input
           id="squat"
           type="number"
@@ -93,7 +93,7 @@ export function WorkoutForm({ onSubmit, loading }: WorkoutFormProps) {
       </div>
 
       <div className={styles.field}>
-        <label htmlFor="deadlift">Deadlift 1RM (kg)</label>
+        <label htmlFor="deadlift">Становая тяга / Deadlift 1RM (kg)</label>
         <input
           id="deadlift"
           type="number"
@@ -112,7 +112,7 @@ export function WorkoutForm({ onSubmit, loading }: WorkoutFormProps) {
       </div>
 
       <button type="submit" className={styles.submit} disabled={loading}>
-        {loading ? 'Generating…' : 'Generate Plan'}
+        {loading ? 'Calculating…' : 'Calculate Plan'}
       </button>
     </form>
   )

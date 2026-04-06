@@ -5,7 +5,6 @@ export interface WorkoutPlanRequest {
 }
 
 export interface ExerciseSet {
-  set_number: number
   reps: number
   weight_kg: number
 }
@@ -16,20 +15,13 @@ export interface Exercise {
 }
 
 export interface TrainingDay {
-  day_number: number
+  day: number
   exercises: Exercise[]
 }
 
 export interface Microcycle {
-  microcycle_number: number
+  microcycle: number
   days: TrainingDay[]
 }
 
-export interface WorkoutPlanResponse {
-  microcycles: Microcycle[]
-}
-
-export interface ApiError {
-  error: string
-  code: number
-}
+export type WorkoutPlanResponse = Microcycle[]

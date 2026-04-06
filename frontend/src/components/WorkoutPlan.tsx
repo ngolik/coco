@@ -8,16 +8,14 @@ interface WorkoutPlanProps {
 
 export function WorkoutPlan({ plan }: WorkoutPlanProps) {
   const [activeIdx, setActiveIdx] = useState(0)
-  const microcycle = plan.microcycles[activeIdx]
+  const microcycle = plan[activeIdx]
 
   return (
     <section aria-label="Workout plan results" className={styles.section}>
-      <h2 className={styles.title}>Your 4-Week Training Plan</h2>
-
       <div className={styles.tabs} role="tablist" aria-label="Microcycles">
-        {plan.microcycles.map((mc, idx) => (
+        {plan.map((mc, idx) => (
           <button
-            key={mc.microcycle_number}
+            key={mc.microcycle}
             role="tab"
             aria-selected={idx === activeIdx}
             aria-controls={`panel-${idx}`}
@@ -25,7 +23,7 @@ export function WorkoutPlan({ plan }: WorkoutPlanProps) {
             className={`${styles.tab} ${idx === activeIdx ? styles.tabActive : ''}`}
             onClick={() => setActiveIdx(idx)}
           >
-            Week {mc.microcycle_number}
+            Microcycle {mc.microcycle}
           </button>
         ))}
       </div>
@@ -37,8 +35,8 @@ export function WorkoutPlan({ plan }: WorkoutPlanProps) {
         className={styles.panel}
       >
         {microcycle.days.map((day) => (
-          <div key={day.day_number} className={styles.day}>
-            <h3 className={styles.dayTitle}>Day {day.day_number}</h3>
+          <div key={day.day} className={styles.day}>
+            <h3 className={styles.dayTitle}>Day {day.day}</h3>
             <div className={styles.tableWrapper}>
               <table className={styles.table}>
                 <thead>
@@ -51,17 +49,18 @@ export function WorkoutPlan({ plan }: WorkoutPlanProps) {
                 <tbody>
                   {day.exercises.flatMap((exercise, exIdx) =>
                     exercise.sets.map((set, setIdx) => (
-                      <tr
-                        key={`${exIdx}-${setIdx}`}
-                        className={setIdx === exercise.sets.length - 1 ? styles.lastRow : ''}
-                      >
+                      <tr key={`${exIdx}-${setIdx}`}>
                         {setIdx === 0 && (
                           <td rowSpan={exercise.sets.length} className={styles.exerciseName}>
                             {exercise.name}
                           </td>
                         )}
                         <td>{set.reps}</td>
-                        <td>{set.weight_kg.toFixed(1)}</td>
+                        <td>
+                          {Number.isInteger(set.weight_kg)
+                            ? set.weight_kg
+                            : set.weight_kg.toFixed(1)}
+                        </td>
                       </tr>
                     ))
                   )}
