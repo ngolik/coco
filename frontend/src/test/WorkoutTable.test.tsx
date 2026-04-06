@@ -1,28 +1,65 @@
 import { render, screen } from '@testing-library/react'
-import { WorkoutTable } from '../components/WorkoutTable'
-import type { WorkoutSet } from '../types'
+import userEvent from '@testing-library/user-event'
+import { WorkoutPlan } from '../components/WorkoutPlan'
+import type { WorkoutPlanResponse } from '../types'
 import { describe, it, expect } from 'vitest'
 
-const mockSets: WorkoutSet[] = [
-  { set_number: 1, working_weight_kg: 75.0, reps: 5, rest_time_sec: 120 },
-  { set_number: 2, working_weight_kg: 75.0, reps: 5, rest_time_sec: 120 },
-  { set_number: 3, working_weight_kg: 75.0, reps: 5, rest_time_sec: 180 },
-]
+const mockPlan: WorkoutPlanResponse = {
+  microcycles: [
+    {
+      microcycle_number: 1,
+      days: [
+        {
+          day_number: 1,
+          exercises: [
+            {
+              name: 'Bench Press',
+              sets: [
+                { set_number: 1, reps: 5, weight_kg: 85.0 },
+                { set_number: 2, reps: 5, weight_kg: 87.5 },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      microcycle_number: 2,
+      days: [
+        {
+          day_number: 1,
+          exercises: [
+            {
+              name: 'Squat',
+              sets: [{ set_number: 1, reps: 3, weight_kg: 70.0 }],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+}
 
-describe('WorkoutTable', () => {
-  it('renders all set rows', () => {
-    render(<WorkoutTable sets={mockSets} exerciseName="Back Squat" />)
-    expect(screen.getAllByRole('row')).toHaveLength(4) // header + 3 rows
+describe('WorkoutPlan', () => {
+  it('renders microcycle tabs', () => {
+    render(<WorkoutPlan plan={mockPlan} />)
+    expect(screen.getByRole('tab', { name: /week 1/i })).toBeInTheDocument()
+    expect(screen.getByRole('tab', { name: /week 2/i })).toBeInTheDocument()
   })
 
-  it('displays exercise name in heading', () => {
-    render(<WorkoutTable sets={mockSets} exerciseName="Deadlift" />)
-    expect(screen.getByText(/deadlift/i)).toBeInTheDocument()
+  it('shows the first microcycle by default', () => {
+    render(<WorkoutPlan plan={mockPlan} />)
+    expect(screen.getByText('Bench Press')).toBeInTheDocument()
+    expect(screen.getByText('85.0')).toBeInTheDocument()
   })
 
-  it('formats rest time in minutes when >= 60s', () => {
-    render(<WorkoutTable sets={mockSets} exerciseName="Squat" />)
-    expect(screen.getAllByText('2m')).toHaveLength(2)
-    expect(screen.getByText('3m')).toBeInTheDocument()
+  it('switches to another microcycle on tab click', async () => {
+    const user = userEvent.setup()
+    render(<WorkoutPlan plan={mockPlan} />)
+
+    await user.click(screen.getByRole('tab', { name: /week 2/i }))
+
+    expect(screen.getByText('Squat')).toBeInTheDocument()
+    expect(screen.getByText('70.0')).toBeInTheDocument()
   })
 })

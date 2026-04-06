@@ -10,10 +10,9 @@ describe('WorkoutForm', () => {
 
     fireEvent.click(screen.getByRole('button', { name: /generate plan/i }))
 
-    expect(screen.getByText(/exercise name is required/i)).toBeInTheDocument()
-    expect(screen.getByText(/1rm must be at least 1 kg/i)).toBeInTheDocument()
-    expect(screen.getByText(/intensity must be between 30 and 100/i)).toBeInTheDocument()
-    expect(screen.getByText(/number of sets must be between 3 and 5/i)).toBeInTheDocument()
+    expect(screen.getByText(/bench press 1rm must be at least 1 kg/i)).toBeInTheDocument()
+    expect(screen.getByText(/squat 1rm must be at least 1 kg/i)).toBeInTheDocument()
+    expect(screen.getByText(/deadlift 1rm must be at least 1 kg/i)).toBeInTheDocument()
     expect(onSubmit).not.toHaveBeenCalled()
   })
 
@@ -21,42 +20,17 @@ describe('WorkoutForm', () => {
     const onSubmit = vi.fn()
     render(<WorkoutForm onSubmit={onSubmit} loading={false} />)
 
-    fireEvent.change(screen.getByLabelText(/exercise name/i), {
-      target: { value: 'Back Squat' },
-    })
-    fireEvent.change(screen.getByLabelText(/1rm/i), { target: { value: '100' } })
-    fireEvent.change(screen.getByLabelText(/target intensity/i), { target: { value: '75' } })
-    fireEvent.change(screen.getByLabelText(/number of sets/i), { target: { value: '4' } })
-    fireEvent.change(screen.getByLabelText(/reps per set/i), { target: { value: '5' } })
+    fireEvent.change(screen.getByLabelText(/bench press 1rm/i), { target: { value: '115' } })
+    fireEvent.change(screen.getByLabelText(/squat 1rm/i), { target: { value: '80' } })
+    fireEvent.change(screen.getByLabelText(/deadlift 1rm/i), { target: { value: '140' } })
 
     fireEvent.click(screen.getByRole('button', { name: /generate plan/i }))
 
     expect(onSubmit).toHaveBeenCalledWith<[WorkoutPlanRequest]>({
-      exercise_name: 'Back Squat',
-      one_rm_kg: 100,
-      target_intensity_pct: 75,
-      num_sets: 4,
-      reps_per_set: 5,
-      exercise_type: 'multi-joint',
+      bench_press_1rm: 115,
+      squat_1rm: 80,
+      deadlift_1rm: 140,
     })
-  })
-
-  it('rejects intensity below 30', () => {
-    const onSubmit = vi.fn()
-    render(<WorkoutForm onSubmit={onSubmit} loading={false} />)
-
-    fireEvent.change(screen.getByLabelText(/exercise name/i), {
-      target: { value: 'Bench Press' },
-    })
-    fireEvent.change(screen.getByLabelText(/1rm/i), { target: { value: '80' } })
-    fireEvent.change(screen.getByLabelText(/target intensity/i), { target: { value: '20' } })
-    fireEvent.change(screen.getByLabelText(/number of sets/i), { target: { value: '3' } })
-    fireEvent.change(screen.getByLabelText(/reps per set/i), { target: { value: '8' } })
-
-    fireEvent.click(screen.getByRole('button', { name: /generate plan/i }))
-
-    expect(screen.getByText(/intensity must be between 30 and 100/i)).toBeInTheDocument()
-    expect(onSubmit).not.toHaveBeenCalled()
   })
 
   it('disables the button while loading', () => {

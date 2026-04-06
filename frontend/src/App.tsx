@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { WorkoutForm } from './components/WorkoutForm'
-import { WorkoutTable } from './components/WorkoutTable'
+import { WorkoutPlan } from './components/WorkoutPlan'
 import type { WorkoutPlanRequest, WorkoutPlanResponse } from './types'
 import styles from './App.module.css'
 
@@ -9,14 +9,12 @@ const API_BASE = import.meta.env.VITE_API_BASE ?? ''
 export function App() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [result, setResult] = useState<{ plan: WorkoutPlanResponse; exerciseName: string } | null>(
-    null,
-  )
+  const [plan, setPlan] = useState<WorkoutPlanResponse | null>(null)
 
   async function handleSubmit(data: WorkoutPlanRequest) {
     setLoading(true)
     setError(null)
-    setResult(null)
+    setPlan(null)
 
     try {
       const response = await fetch(`${API_BASE}/api/workout/plan`, {
@@ -37,10 +35,10 @@ export function App() {
         return
       }
 
-      const plan = (await response.json()) as WorkoutPlanResponse
-      setResult({ plan, exerciseName: data.exercise_name })
+      const result = (await response.json()) as WorkoutPlanResponse
+      setPlan(result)
     } catch {
-      setError('Network error — make sure the backend is running at localhost:8080')
+      setError('Network error — make sure the backend is running')
     } finally {
       setLoading(false)
     }
@@ -50,14 +48,13 @@ export function App() {
     <main className={styles.main}>
       <header className={styles.header}>
         <h1>Workout Plan Generator</h1>
-        <p>Enter your exercise parameters to generate a personalised training plan.</p>
       </header>
 
       <WorkoutForm onSubmit={handleSubmit} loading={loading} />
 
       {loading && (
         <p className={styles.loading} role="status" aria-live="polite">
-          Generating your workout plan…
+          Calculating your workout plan…
         </p>
       )}
 
@@ -67,7 +64,7 @@ export function App() {
         </p>
       )}
 
-      {result && <WorkoutTable sets={result.plan.sets} exerciseName={result.exerciseName} />}
+      {plan && <WorkoutPlan plan={plan} />}
     </main>
   )
 }

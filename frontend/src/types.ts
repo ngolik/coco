@@ -1,26 +1,27 @@
-export type ExerciseType = 'single-joint' | 'multi-joint'
-
 export interface WorkoutPlanRequest {
-  exercise_name: string
-  one_rm_kg: number
-  target_intensity_pct: number
-  num_sets: number
-  reps_per_set: number
-  exercise_type: ExerciseType
+  bench_press_1rm: number
+  squat_1rm: number
+  deadlift_1rm: number
 }
 
-export interface WorkoutSet {
-  set_number: number
-  working_weight_kg: number
+export interface ExerciseSet {
   reps: number
-  rest_time_sec: number
+  weight_kg: number
 }
 
-export interface WorkoutPlanResponse {
-  sets: WorkoutSet[]
+export interface Exercise {
+  name: string
+  sets: ExerciseSet[]
 }
 
-export interface ApiError {
-  error: string
-  code: number
+export interface TrainingDay {
+  day: number
+  exercises: Exercise[]
 }
+
+export interface Microcycle {
+  microcycle: number
+  days: TrainingDay[]
+}
+
+export type WorkoutPlanResponse = Microcycle[]
