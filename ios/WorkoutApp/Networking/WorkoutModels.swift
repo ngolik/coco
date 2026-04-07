@@ -13,30 +13,36 @@ struct WorkoutPlanRequest: Encodable {
 }
 
 struct Microcycle: Codable, Identifiable {
-    let id: Int
-    let label: String
+    let microcycle: Int
     let days: [TrainingDay]
+
+    var id: Int { microcycle }
+    var label: String { "Microcycle \(microcycle)" }
 }
 
 struct TrainingDay: Codable, Identifiable {
-    let id: Int
-    let label: String
+    let day: Int
     let exercises: [Exercise]
+
+    var id: Int { day }
+    var label: String { "Day \(day)" }
 }
 
 struct Exercise: Codable, Identifiable {
-    let id: String
     let name: String
-    let sets: Int
-    let reps: String
-    let intensityPct: Double
-    let restSeconds: Int?
+    let sets: [WorkoutSet]
+
+    var id: String { name }
+}
+
+struct WorkoutSet: Codable, Identifiable {
+    let weightKg: Double
+    let reps: Int
+
+    var id: String { "\(weightKg)-\(reps)" }
 
     enum CodingKeys: String, CodingKey {
-        case id, name, sets, reps
-        case intensityPct = "intensity_pct"
-        case restSeconds  = "rest_seconds"
+        case weightKg = "weight_kg"
+        case reps
     }
-
-    var effectiveRestSeconds: Int { restSeconds ?? 90 }
 }

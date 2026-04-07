@@ -19,12 +19,11 @@ struct MicrocycleDetailView: View {
                     ForEach(day.exercises) { exercise in
                         VStack(alignment: .leading, spacing: 4) {
                             Text(exercise.name).font(.subheadline)
-                            Text("\(exercise.sets) \u{00D7} \(exercise.reps) @ \(Int(exercise.intensityPct * 100))%")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                            Text("Rest: \(exercise.effectiveRestSeconds)s")
-                                .font(.caption2)
-                                .foregroundStyle(.tertiary)
+                            ForEach(Array(exercise.sets.enumerated()), id: \.offset) { idx, set in
+                                Text("Set \(idx + 1): \(set.reps) reps × \(String(format: "%.1f", set.weightKg)) kg")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
                         }
                         .padding(.vertical, 2)
                     }

@@ -23,20 +23,13 @@ struct ActiveWorkoutView: View {
         List {
             ForEach(Array(day.exercises.enumerated()), id: \.offset) { idx, exercise in
                 Section {
-                    HStack {
-                        Text("\(exercise.sets) sets \u{00D7} \(exercise.reps)")
-                        Spacer()
-                        Text("@ \(Int(exercise.intensityPct * 100))%")
-                            .foregroundStyle(.secondary)
-                            .font(.caption)
-                    }
-                    ForEach(0..<exercise.sets, id: \.self) { setIdx in
+                    ForEach(Array(exercise.sets.enumerated()), id: \.offset) { setIdx, set in
                         if idx < setCompletion.count, setIdx < setCompletion[idx].count {
                             Button {
                                 toggleSet(
                                     exerciseIdx: idx,
                                     setIdx: setIdx,
-                                    restSeconds: exercise.effectiveRestSeconds,
+                                    restSeconds: 90,
                                     exerciseName: exercise.name
                                 )
                             } label: {
@@ -48,7 +41,7 @@ struct ActiveWorkoutView: View {
                                     )
                                     .foregroundStyle(setCompletion[idx][setIdx] ? .green : .secondary)
                                     .font(.title3)
-                                    Text("Set \(setIdx + 1)")
+                                    Text("Set \(setIdx + 1): \(set.reps) reps × \(String(format: "%.1f", set.weightKg)) kg")
                                     Spacer()
                                 }
                             }
@@ -89,7 +82,7 @@ struct ActiveWorkoutView: View {
         .navigationTitle(day.label)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            setCompletion = day.exercises.map { Array(repeating: false, count: $0.sets) }
+            setCompletion = day.exercises.map { Array(repeating: false, count: $0.sets.count) }
         }
         .onDisappear { stopTimer() }
     }
