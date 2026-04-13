@@ -10,11 +10,9 @@ struct PlanView: View {
     @State private var bench = ""
     @State private var squat = ""
     @State private var deadlift = ""
-    @State private var isLoading = false
     @State private var errorMessage: String?
     @State private var microcycles: [Microcycle] = []
 
-    private let apiClient = WorkoutAPIClient(baseURL: URL(string: "http://localhost:8080")!)
 
     var body: some View {
         List {
@@ -38,16 +36,9 @@ struct PlanView: View {
             labeledField("Squat",       placeholder: "80",  text: $squat)
             labeledField("Deadlift",    placeholder: "140", text: $deadlift)
             Button(action: fetchPlan) {
-                if isLoading {
-                    HStack {
-                        ProgressView()
-                        Text("Fetching\u{2026}")
-                    }
-                } else {
-                    Text("Fetch Plan").frame(maxWidth: .infinity)
-                }
+                Text("Generate Plan").frame(maxWidth: .infinity)
             }
-            .disabled(isLoading || bench.isEmpty || squat.isEmpty || deadlift.isEmpty)
+            .disabled(bench.isEmpty || squat.isEmpty || deadlift.isEmpty)
         }
     }
 
@@ -113,7 +104,6 @@ struct PlanView: View {
             errorMessage = "Please enter valid numbers."
             return
         }
-        isLoading = true
         errorMessage = nil
 
         if let existing = profiles.first {
@@ -125,28 +115,11 @@ struct PlanView: View {
             modelContext.insert(UserProfile(benchPress1RM: b, squat1RM: s, deadlift1RM: d))
         }
 
-        Task {
-            do {
-                let result = try await apiClient.fetchPlan(
-                    WorkoutPlanRequest(benchPress1RM: b, squat1RM: s, deadlift1RM: d)
-                )
-                let json = String(
-                    data: try JSONEncoder().encode(result),
-                    encoding: .utf8
-                ) ?? "[]"
-                await MainActor.run {
-                    for old in plans { modelContext.delete(old) }
-                    let plan = CachedPlan(rawJSON: json)
-                    modelContext.insert(plan)
-                    microcycles = result
-                    isLoading = false
-                }
-            } catch {
-                await MainActor.run {
-                    errorMessage = error.localizedDescription
-                    isLoading = false
-                }
-            }
-        }
+        let result = WorkoutPlanGenerator.generate(bench: b, squat: s, deadlift: d)
+        let json = (try? JSONEncoder().encode(result)).flatMap { String(data: $0, encoding: .utf8) } ?? "[]"
+        for old in plans { modelContext.delete(old) }
+        let plan = CachedPlan(rawJSON: json)
+        modelContext.insert(plan)
+        microcycles = result
     }
 }
