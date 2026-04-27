@@ -130,10 +130,7 @@ struct FreeWorkoutSessionView: View {
         guard exIndex < exerciseSets.count, setIndex < exerciseSets[exIndex].count else { return }
         exerciseSets[exIndex][setIndex].isDone.toggle()
         if exerciseSets[exIndex][setIndex].isDone {
-            let exerciseDone = exerciseSets[exIndex].allSatisfy { $0.isDone }
-            if !exerciseDone {
-                startTimer()
-            }
+            startTimer()
         }
     }
 
