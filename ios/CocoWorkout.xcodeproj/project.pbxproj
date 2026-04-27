@@ -23,6 +23,9 @@
 		CW000014 /* WorkoutDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CW100014 /* WorkoutDetailView.swift */; };
 		CW000015 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CW100015 /* Assets.xcassets */; };
 		CW000016 /* WorkoutSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CW100016 /* WorkoutSchedulerTests.swift */; };
+		CW000017 /* FreeProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = CW100018 /* FreeProgram.swift */; };
+		CW000018 /* ProgramsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CW100019 /* ProgramsView.swift */; };
+		CW000019 /* FreeWorkoutSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CW100020 /* FreeWorkoutSessionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +57,9 @@
 		CW100015 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CW100016 /* WorkoutSchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSchedulerTests.swift; sourceTree = "<group>"; };
 		CW100017 /* CocoWorkoutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CocoWorkoutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CW100018 /* FreeProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FreeProgram.swift; path = Models/FreeProgram.swift; sourceTree = "<group>"; };
+		CW100019 /* ProgramsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProgramsView.swift; path = Views/Programs/ProgramsView.swift; sourceTree = "<group>"; };
+		CW100020 /* FreeWorkoutSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FreeWorkoutSessionView.swift; path = Views/Programs/FreeWorkoutSessionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +118,7 @@
 				CW100003 /* UserProfile.swift */,
 				CW100004 /* CachedPlan.swift */,
 				CW100005 /* CompletedWorkout.swift */,
+				CW100018 /* FreeProgram.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -138,6 +145,7 @@
 			children = (
 				CW200006 /* Plan */,
 				CW200007 /* Workout */,
+				CW200012 /* Programs */,
 				CW200008 /* History */,
 			);
 			name = Views;
@@ -168,6 +176,15 @@
 				CW100014 /* WorkoutDetailView.swift */,
 			);
 			name = History;
+			sourceTree = "<group>";
+		};
+		CW200012 /* Programs */ = {
+			isa = PBXGroup;
+			children = (
+				CW100019 /* ProgramsView.swift */,
+				CW100020 /* FreeWorkoutSessionView.swift */,
+			);
+			name = Programs;
 			sourceTree = "<group>";
 		};
 		CW200009 /* Resources */ = {
@@ -291,6 +308,9 @@
 				CW000012 /* ActiveWorkoutView.swift in Sources */,
 				CW000013 /* HistoryListView.swift in Sources */,
 				CW000014 /* WorkoutDetailView.swift in Sources */,
+				CW000017 /* FreeProgram.swift in Sources */,
+				CW000018 /* ProgramsView.swift in Sources */,
+				CW000019 /* FreeWorkoutSessionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,6 +18,13 @@ struct ContentView: View {
             }
 
             NavigationStack {
+                ProgramsView()
+            }
+            .tabItem {
+                Label("Программы", systemImage: "dumbbell")
+            }
+
+            NavigationStack {
                 HistoryListView()
             }
             .tabItem {
