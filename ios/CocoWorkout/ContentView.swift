@@ -21,7 +21,7 @@ struct ContentView: View {
                 ProgramsView()
             }
             .tabItem {
-                Label("Programs", systemImage: "dumbbell")
+                Label("Программы", systemImage: "dumbbell")
             }
 
             NavigationStack {
